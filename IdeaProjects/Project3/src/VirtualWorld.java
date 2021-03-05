@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.List;
 import java.util.Scanner;
 import processing.core.*;
 
@@ -219,6 +218,7 @@ public final class VirtualWorld
 
    public static void main(String [] args)
    {
+      //Hero hero = new Hero()
       parseCommandLine(args);
       PApplet.main(VirtualWorld.class);
    }

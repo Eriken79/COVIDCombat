@@ -1,0 +1,21 @@
+atlantis images/atlantis0.bmp 255 255 255 0
+atlantis images/atlantis1.bmp 
+atlantis images/atlantis2.bmp 
+atlantis images/atlantis3.bmp 
+atlantis images/atlantis4.bmp 
+atlantis images/atlantis5.bmp
+atlantis images/atlantis6.bmp
+crab images/coronavirus.png 255 255 255 128
+sea images/sea.bmp 255 255 255 0
+octo images/hagocytic-antigen-presenting-cells-with-an-important-illustratio-11563206388kpxcvsvys2.png 255 255 255 0
+obstacle images/rock.bmp
+fish images/fish.bmp 255 255 255 0
+quake images/quake1.bmp 255 255 255 0
+quake images/quake2.bmp 255 255 255 0
+quake images/quake3.bmp 255 255 255 0
+quake images/quake4.bmp 255 255 255 0
+quake images/quake5.bmp 255 255 255 0
+quake images/quake6.bmp 255 255 255 0
+bubbles images/bubbles.bmp
+seaGrass images/Seaweed1.bmp 255 255 255 0
+background_default images/none.bmp
