@@ -24,6 +24,15 @@ final class Functions
    public static final int OCTO_ACTION_PERIOD = 5;
    public static final int OCTO_ANIMATION_PERIOD = 6;
 
+   public static final String HERO_KEY = "hero";
+   public static final int HERO_NUM_PROPERTIES = 6;
+   public static final int HERO_ID = 1;
+   public static final int HERO_COL = 2;
+   public static final int HERO_ROW = 3;
+   //public static final int HERO_LIMIT = 4;
+   public static final int HERO_ACTION_PERIOD = 4;
+   public static final int HERO_ANIMATION_PERIOD = 5;
+
    public static final String OBSTACLE_KEY = "obstacle";
    public static final int OBSTACLE_NUM_PROPERTIES = 4;
    public static final int OBSTACLE_ID = 1;

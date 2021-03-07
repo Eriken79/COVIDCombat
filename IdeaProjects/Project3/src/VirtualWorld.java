@@ -15,10 +15,14 @@ public final class VirtualWorld
 {
    public static final int TIMER_ACTION_PERIOD = 100;
 
-   public static final int VIEW_WIDTH = 640;
-   public static final int VIEW_HEIGHT = 480;
+   public static final int VIEW_WIDTH = 1280;
+   public static final int VIEW_HEIGHT = 960;
    public static final int TILE_WIDTH = 32;
    public static final int TILE_HEIGHT = 32;
+//   public static final int VIEW_WIDTH = 640;
+//   public static final int VIEW_HEIGHT = 480;
+//   public static final int TILE_WIDTH = 32;
+//   public static final int TILE_HEIGHT = 32;
    public static final int WORLD_WIDTH_SCALE = 2;
    public static final int WORLD_HEIGHT_SCALE = 2;
 
@@ -39,8 +43,8 @@ public final class VirtualWorld
    public static final double FAST_SCALE = 0.5;
    public static final double FASTER_SCALE = 0.25;
    public static final double FASTEST_SCALE = 0.10;
-
    public static double timeScale = 1.0;
+
 
    private ImageStore imageStore;
    private WorldModel world;
@@ -98,15 +102,35 @@ public final class VirtualWorld
          {
             case UP:
                dy = -1;
+               for(Entity e : world.getEntities()){
+                  if(e instanceof Hero){
+                     e.setPosition(new Point(e.position.x, e.position.y-1));
+                  }
+               }
                break;
             case DOWN:
                dy = 1;
+               for(Entity e : world.getEntities()){
+                  if(e instanceof Hero){
+                     e.setPosition(new Point(e.position.x, e.position.y+1));
+                  }
+               }
                break;
             case LEFT:
                dx = -1;
+               for(Entity e : world.getEntities()){
+                  if(e instanceof Hero){
+                     e.setPosition(new Point(e.position.x-1, e.position.y));
+                  }
+               }
                break;
             case RIGHT:
                dx = 1;
+               for(Entity e : world.getEntities()){
+                  if(e instanceof Hero){
+                     e.setPosition(new Point(e.position.x+1, e.position.y));
+                  }
+               }
                break;
          }
          view.shiftView(dx, dy);
@@ -218,7 +242,7 @@ public final class VirtualWorld
 
    public static void main(String [] args)
    {
-      //Hero hero = new Hero()
+
       parseCommandLine(args);
       PApplet.main(VirtualWorld.class);
    }
