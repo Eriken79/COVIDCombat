@@ -44,7 +44,10 @@ public final class VirtualWorld
    public static final double FASTER_SCALE = 0.25;
    public static final double FASTEST_SCALE = 0.10;
    public static double timeScale = 1.0;
-
+   public static int injectionCount = 1;
+   public static int count = 0;
+   public static boolean nextPressed;
+   public static int timePressed;
 
    private ImageStore imageStore;
    private WorldModel world;
@@ -77,6 +80,8 @@ public final class VirtualWorld
       scheduleActions(world, scheduler, imageStore);
 
       next_time = System.currentTimeMillis() + TIMER_ACTION_PERIOD;
+      nextPressed = false;
+      timePressed = millis() + 100;
    }
 
    public void draw()
@@ -87,54 +92,67 @@ public final class VirtualWorld
          this.scheduler.updateOnTime(time);
          next_time = time + TIMER_ACTION_PERIOD;
       }
-
+      if (millis() > timePressed){
+         nextPressed = !nextPressed;
+         timePressed = millis() + 500;
+      }
       view.drawViewport();
+   }
+
+   public void mousePressed(){
+         count++;
+         System.out.println(count);
+         Injection injection = new Injection(new Point(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT), imageStore.getImageList(Functions.INJECTION_KEY));
+         //injection.executeActivity(world, imageStore, scheduler);
+         world.addEntity(injection);
+         injection.scheduleActions(scheduler, world, imageStore);
    }
 
    public void keyPressed()
    {
-      if (key == CODED)
-      {
-         int dx = 0;
-         int dy = 0;
-
-         switch (keyCode)
-         {
-            case UP:
-               dy = -1;
-               for(Entity e : world.getEntities()){
-                  if(e instanceof Hero){
-                     e.setPosition(new Point(e.position.x, e.position.y-1));
-                  }
-               }
-               break;
-            case DOWN:
-               dy = 1;
-               for(Entity e : world.getEntities()){
-                  if(e instanceof Hero){
-                     e.setPosition(new Point(e.position.x, e.position.y+1));
-                  }
-               }
-               break;
-            case LEFT:
-               dx = -1;
-               for(Entity e : world.getEntities()){
-                  if(e instanceof Hero){
-                     e.setPosition(new Point(e.position.x-1, e.position.y));
-                  }
-               }
-               break;
-            case RIGHT:
-               dx = 1;
-               for(Entity e : world.getEntities()){
-                  if(e instanceof Hero){
-                     e.setPosition(new Point(e.position.x+1, e.position.y));
-                  }
-               }
-               break;
-         }
-         view.shiftView(dx, dy);
+      if(nextPressed){
+         return;
       }
+         if (key == CODED) {
+//         int dx = 0;
+//         int dy = 0;
+
+            switch (keyCode) {
+               case UP:
+//               dy = -1;
+                  for (Entity e : world.getEntities()) {
+                     if (e instanceof Hero) {
+                        e.setPosition(new Point(e.position.x, e.position.y - 1));
+                     }
+                  }
+                  break;
+               case DOWN:
+//               dy = 1;
+                  for (Entity e : world.getEntities()) {
+                     if (e instanceof Hero) {
+                        e.setPosition(new Point(e.position.x, e.position.y + 1));
+                     }
+                  }
+                  break;
+               case LEFT:
+//               dx = -1;
+                  for (Entity e : world.getEntities()) {
+                     if (e instanceof Hero) {
+                        e.setPosition(new Point(e.position.x - 1, e.position.y));
+                     }
+                  }
+                  break;
+               case RIGHT:
+//               dx = 1;
+                  for (Entity e : world.getEntities()) {
+                     if (e instanceof Hero) {
+                        e.setPosition(new Point(e.position.x + 1, e.position.y));
+                     }
+                  }
+                  break;
+            }
+//         view.shiftView(dx, dy);
+         }
    }
 
    private Background createDefaultBackground(ImageStore imageStore)
@@ -242,7 +260,6 @@ public final class VirtualWorld
 
    public static void main(String [] args)
    {
-
       parseCommandLine(args);
       PApplet.main(VirtualWorld.class);
    }

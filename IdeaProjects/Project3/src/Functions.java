@@ -73,6 +73,15 @@ final class Functions
    public static final int QUAKE_ANIMATION_PERIOD = 100;
    public static final int QUAKE_ANIMATION_REPEAT_COUNT = 10;
 
+   public static final String INJECTION_KEY = "injection";
+   public static final String INJECTION_ID = "injection";
+   public static final int INJECTION_NUM_PROPERTIES = 6;
+   public static final int INJECTION_COL = 1;
+   public static final int INJECTION_ROW = 2;
+   public static final int INJECTION_ACTION_PERIOD = 3;
+   public static final int INJECTION_ANIMATION_PERIOD = 4;
+   public static final int INJECTION_ANIMATION_REPEAT_COUNT = 5;
+
    
    public static final String FISH_ID_PREFIX = "fish -- ";
    public static final int FISH_CORRUPT_MIN = 20000;

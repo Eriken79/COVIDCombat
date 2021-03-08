@@ -233,6 +233,8 @@ final class WorldModel
                return parseSgrass(properties, imageStore);
             case Functions.HERO_KEY:
                return parseHero(properties, imageStore);
+            case Functions.INJECTION_KEY:
+               return parseInjection(properties, imageStore);
          }
       }
 
@@ -318,6 +320,20 @@ final class WorldModel
       }
 
       return properties.length == Functions.HERO_NUM_PROPERTIES;
+   }
+
+   private boolean parseInjection(String [] properties,
+                             ImageStore imageStore)
+   {
+      if (properties.length == Functions.INJECTION_NUM_PROPERTIES)
+      {
+         Point pt = new Point(Integer.parseInt(properties[Functions.INJECTION_COL]),
+                 Integer.parseInt(properties[Functions.INJECTION_ROW]));
+         Injection injection = new Injection(pt, imageStore.getImageList(Functions.INJECTION_KEY));
+         this.tryAddEntity(injection);
+      }
+
+      return properties.length == Functions.INJECTION_NUM_PROPERTIES;
    }
 
    private boolean parseAtlantis(String [] properties,
