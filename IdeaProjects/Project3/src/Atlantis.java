@@ -10,24 +10,27 @@ public class Atlantis extends ActionEntity{
     }
 
     public void executeActivity(WorldModel world,
-                                ImageStore imageStore, EventScheduler scheduler)
-    {
+                                ImageStore imageStore, EventScheduler scheduler) {
+        int crabLimit = 0;
+        for (Entity e : world.getEntities()) {
+            if (e instanceof Crab) {
+                crabLimit++;
+            }
+        }
         Optional<Point> openPt = world.findOpenAround(this.position);
 
-        if (openPt.isPresent())
+        if (openPt.isPresent() && crabLimit < 17)
         {
-            Crab crab = new Crab(this.getId() + Functions.CRAB_ID_SUFFIX,
+            CovidFactory covidFactory = new CovidFactory();
+            Entity covid = covidFactory.createEntity(this.getId() + Functions.CRAB_ID_SUFFIX,
                     openPt.get(), this.getActionPeriod() / Functions.CRAB_PERIOD_SCALE,
                     Functions.CRAB_ANIMATION_MIN +
                             Functions.rand.nextInt(Functions.CRAB_ANIMATION_MAX - Functions.CRAB_ANIMATION_MIN),
                     imageStore.getImageList(Functions.CRAB_KEY));
-            world.addEntity(crab);
-            crab.scheduleActions(scheduler, world, imageStore);
+            world.addEntity(covid);
+            covid.scheduleActions(scheduler, world, imageStore);
         }
 
-        scheduler.scheduleEvent(this,
-                new Activity(this, world, imageStore),
-                this.getActionPeriod());
 //        Point pos = this.position;  // store current position before removing
 //
 //        world.removeEntity(this);
@@ -41,13 +44,13 @@ public class Atlantis extends ActionEntity{
 //
 //        world.addEntity(crab);
 //        crab.scheduleActions(scheduler, world, imageStore);
-    }
+        }
 
-    protected int getAnimationPeriod() {
-        throw new UnsupportedOperationException(
-                String.format("getAnimationPeriod not supported for %s",
-                        this.getClass()));
-    }
+        protected int getAnimationPeriod () {
+            throw new UnsupportedOperationException(
+                    String.format("getAnimationPeriod not supported for %s",
+                            this.getClass()));
+        }
 
     /*public void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
     {
@@ -55,4 +58,5 @@ public class Atlantis extends ActionEntity{
                 new Activity(this, world, imageStore),
                 this.actionPeriod);
     }*/
+
 }

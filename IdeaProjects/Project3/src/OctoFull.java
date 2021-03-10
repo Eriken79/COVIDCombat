@@ -59,6 +59,9 @@ public class OctoFull extends Octo{
     }
 
     protected void moveToEntity(WorldModel world, Entity target, EventScheduler scheduler){}
+
+
+
     /*protected boolean moveToFull(WorldModel world,
                                  Entity target, EventScheduler scheduler)
     {

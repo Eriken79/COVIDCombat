@@ -15,6 +15,7 @@ public class Crab extends Movable{
     public void executeActivity(WorldModel world,
                                     ImageStore imageStore, EventScheduler scheduler)
     {
+
         Optional<Entity> crabTarget = world.findNearest(
                 this.position, Fish.class);
         long nextPeriod = this.getActionPeriod();
@@ -25,12 +26,12 @@ public class Crab extends Movable{
 
             if (this.moveTo(world, crabTarget.get(), scheduler))
             {
-                Quake quake = new Quake(tgtPos,
-                        imageStore.getImageList(Functions.QUAKE_KEY));
-
-                world.addEntity(quake);
+//                Quake quake = new Quake(tgtPos,
+//                        imageStore.getImageList(Functions.QUAKE_KEY));
+//
+//                world.addEntity(quake);
                 nextPeriod += this.getActionPeriod();
-                quake.scheduleActions(scheduler, world, imageStore);
+                //quake.scheduleActions(scheduler, world, imageStore);
             }
         }
 
@@ -43,6 +44,11 @@ public class Crab extends Movable{
                              Entity target, EventScheduler scheduler){
         world.removeEntity(target);
         scheduler.unscheduleAllEvents(target);
+    }
+
+    @Override
+    protected PathingStrategy getStrategy() {
+        return strategy;
     }
     /*private boolean moveToCrab(WorldModel world,
                                  Entity target, EventScheduler scheduler)

@@ -44,4 +44,9 @@ public class Hero extends Movable{
         world.removeEntity(target);
         scheduler.unscheduleAllEvents(target);
     }
+
+    @Override
+    protected PathingStrategy getStrategy() {
+        return null;
+    }
 }

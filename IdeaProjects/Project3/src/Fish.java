@@ -1,16 +1,37 @@
 import processing.core.PImage;
 import java.util.List;
+import java.util.Optional;
 
-public class Fish extends ActionEntity{
+public class Fish extends Movable{//ActionEntity{
+    private PathingStrategy strategy;
     public Fish(String id, Point position, int actionPeriod,
-               List<PImage> images){
-        super(id, position, actionPeriod, images);
+                List<PImage> images){
+        super(id, position, images, actionPeriod, 0);
+        this.strategy = new SingleStepPathingStrategy();
     }
 
 
     public void executeActivity(WorldModel world,
-                                    ImageStore imageStore, EventScheduler scheduler)
+                                ImageStore imageStore, EventScheduler scheduler)
     {
+        System.out.println("execute");
+        Optional<Entity> fishTarget = world.findNearest(
+                this.position, Hero.class);
+        long nextPeriod = this.getActionPeriod();
+        if (fishTarget.isPresent())
+        {
+            //System.out.println("present");
+            Point tgtPos = fishTarget.get().position;
+
+            if (this.moveTo(world, fishTarget.get(), scheduler))
+            {
+                System.out.println("move");
+                nextPeriod += this.getActionPeriod();
+            }
+        }
+        scheduler.scheduleEvent(this,
+                new Activity(this, world, imageStore),
+                nextPeriod);
 //        Point pos = this.position;  // store current position before removing
 //
 //        world.removeEntity(this);
@@ -26,9 +47,16 @@ public class Fish extends ActionEntity{
 //        crab.scheduleActions(scheduler, world, imageStore);
     }
 
-    protected int getAnimationPeriod() { throw new UnsupportedOperationException(
+    protected void moveToEntity(WorldModel world,
+                                Entity target, EventScheduler scheduler){}
+
+    protected PathingStrategy getStrategy(){return strategy;}
+
+    protected int getAnimationPeriod() {
+        /*throw new UnsupportedOperationException(
             String.format("getAnimationPeriod not supported for %s",
-                    this.getClass()));}
+                    this.getClass()));}*/
+        return 0;}
 
     /*protected void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
     {

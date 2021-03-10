@@ -60,10 +60,10 @@ obstacle obstacle_40_41 40 41
 obstacle obstacle_41_41 41 41
 obstacle obstacle_41_40 41 40
 obstacle obstacle_41_42 41 42
-atlantis atlantis_-1_-1 -1 -1 1000105
-atlantis atlantis_40_40 40 40 1000010
-atlantis atlantis_0_40 0 40 1000005
-atlantis atlantis_40_0 40 0 1000000
+atlantis atlantis_-1_-1 -1 -1 100105
+atlantis atlantis_40_40 40 40 100010
+atlantis atlantis_0_40 0 40 100005
+atlantis atlantis_40_0 40 0 100000
 hero hero_17_15 17 15 2 100
 obstacle obstacle_27_25 27 25
 obstacle obstacle_28_25 28 25

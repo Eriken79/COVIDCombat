@@ -43,6 +43,9 @@ public final class VirtualWorld
    public static final double FAST_SCALE = 0.5;
    public static final double FASTER_SCALE = 0.25;
    public static final double FASTEST_SCALE = 0.10;
+   public static final String EASY_FLAG = "-easy";
+   public static final String HARD_FLAG = "-hard";
+   public static String Difficulty = "";
    public static double timeScale = 1.0;
    public static int injectionCount = 1;
    public static int count = 0;
@@ -94,7 +97,7 @@ public final class VirtualWorld
       }
       if (millis() > timePressed){
          nextPressed = !nextPressed;
-         timePressed = millis() + 500;
+         timePressed = millis() + 100;
       }
       view.drawViewport();
    }
@@ -106,9 +109,9 @@ public final class VirtualWorld
          injection.executeActivity(world, imageStore, scheduler);
    }
 
-   public void keyPressed()
+   public void keyReleased()
    {
-      if(nextPressed){
+      if(!nextPressed){
          return;
       }
          if (key == CODED) {
@@ -216,14 +219,23 @@ public final class VirtualWorld
       {
          switch (arg)
          {
-            case FAST_FLAG:
+//            case FAST_FLAG:
+//               timeScale = Math.min(FAST_SCALE, timeScale);
+//               break;
+//            case FASTER_FLAG:
+//               timeScale = Math.min(FASTER_SCALE, timeScale);
+//               break;
+//            case FASTEST_FLAG:
+//               timeScale = Math.min(FASTEST_SCALE, timeScale);
+//               break;
+            case EASY_FLAG:
+               Difficulty = "easy";
                timeScale = Math.min(FAST_SCALE, timeScale);
                break;
-            case FASTER_FLAG:
+            case HARD_FLAG:
+               Difficulty = "hard";
                timeScale = Math.min(FASTER_SCALE, timeScale);
-               break;
-            case FASTEST_FLAG:
-               timeScale = Math.min(FASTEST_SCALE, timeScale);
+               //timeScale = 1.0;
                break;
          }
       }

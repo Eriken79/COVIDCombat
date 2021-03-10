@@ -17,7 +17,8 @@ public class Injection extends Stationary{
         world.addEntity(injection);
         injection.scheduleActions(scheduler, world, imageStore);
         long nextPeriod = this.getActionPeriod();
-        //add injection, then consume injection to add antibody, add blood around injection,
+        //add injection, then consume injection to add antibody , add blood around injection,
+
         Point pos = this.position;
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);

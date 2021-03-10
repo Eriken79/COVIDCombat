@@ -5,12 +5,13 @@ import java.util.Optional;
 public abstract class Octo extends Movable{
     private final int resourceLimit;
     private int resourceCount;
-
+    private PathingStrategy strategy;
     public Octo(String id,
-                    Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
+                Point position, List<PImage> images, int resourceLimit, int resourceCount, int actionPeriod, int animationPeriod) {
         super(id, position, images, actionPeriod, animationPeriod);
         this.resourceLimit = resourceLimit;
         this.resourceCount = resourceCount;
+        this.strategy = new newPathing();
     }
 
     protected int getResourceLimit() { return resourceLimit;}
@@ -19,7 +20,9 @@ public abstract class Octo extends Movable{
 
     protected void setResourceCount(int resourceCount){ this.resourceCount = resourceCount;}
 
-    protected Point nextPosition(WorldModel world,
+
+    protected PathingStrategy getStrategy(){return strategy;}
+    /*protected Point nextPosition(WorldModel world,
                                    Point destPos)
     {
         int horiz = Integer.signum(destPos.x - this.position.x);
@@ -39,6 +42,6 @@ public abstract class Octo extends Movable{
         }
 
         return newPos;
-    }
+    }*/
 
 }
