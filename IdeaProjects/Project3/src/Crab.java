@@ -16,7 +16,7 @@ public class Crab extends Movable{
                                     ImageStore imageStore, EventScheduler scheduler)
     {
         Optional<Entity> crabTarget = world.findNearest(
-                this.position, Hero.class);
+                this.position, Fish.class);
         long nextPeriod = this.getActionPeriod();
 
         if (crabTarget.isPresent())
@@ -76,7 +76,7 @@ public class Crab extends Movable{
     {
         List<Point> path = new ArrayList<>();
         path = strategy.computePath(this.position, destPos,
-                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || !(world.getOccupant(p).get() instanceof Obstacle)),
+                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || (!(world.getOccupant(p).get() instanceof Obstacle) && !(world.getOccupant(p).get() instanceof Crab) && !(world.getOccupant(p).get() instanceof Sgrass)&& !(world.getOccupant(p).get() instanceof Hero))),
                 (p1, p2) -> p1.adjacent(p2),
                 PathingStrategy.CARDINAL_NEIGHBORS);
         if (path.isEmpty()) { return this.position;}

@@ -113,8 +113,7 @@ final class EventScheduler
       }
    }
 
-   public void updateOnTime(long time)
-   {
+   public void updateOnTime(long time){
       while (!this.eventQueue.isEmpty() &&
               this.eventQueue.peek().getTime() < time)
       {

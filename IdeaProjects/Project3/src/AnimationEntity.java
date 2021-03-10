@@ -15,7 +15,7 @@ public abstract class AnimationEntity extends ActionEntity{
     protected void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore)
     {
         super.scheduleActions(scheduler, world, imageStore);
-        if (!((this.getClass() == Quake.class) || this.getClass() == Atlantis.class)){
+        if (!((this.getClass() == Quake.class) /*|| this.getClass() == Atlantis.class)*/)){
             scheduler.scheduleEvent(this,
                     new Animation(this, 0),
                     this.getAnimationPeriod());

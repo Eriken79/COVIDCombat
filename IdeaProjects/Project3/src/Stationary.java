@@ -15,18 +15,17 @@ public class Stationary extends AnimationEntity{
     }
 
     protected void executeActivity(WorldModel world,
-                                   ImageStore imageStore, EventScheduler scheduler)
-    {
+                                   ImageStore imageStore, EventScheduler scheduler){
         scheduler.unscheduleAllEvents(this);
         world.removeEntity(this);
     }
 
     protected void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore){
-        if (!(this.getClass() == Atlantis.class)){
-            super.scheduleActions(scheduler, world, imageStore);
-        }
-        scheduler.scheduleEvent(this,
-                new Animation(this, repeatCount),
-                this.getAnimationPeriod());
+//        if (!(this.getClass() == Atlantis.class)){
+//            super.scheduleActions(scheduler, world, imageStore);
+//        }
+//        scheduler.scheduleEvent(this,
+//                new Animation(this, repeatCount),
+//                this.getAnimationPeriod());
     }
 }

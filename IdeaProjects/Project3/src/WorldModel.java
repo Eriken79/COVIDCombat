@@ -60,8 +60,25 @@ final class WorldModel
 
       return Optional.empty();
    }
+   public Optional<Point> findClosedAround(Point pos)
+   {
+      for (int dy = -Functions.FISH_REACH; dy <= Functions.FISH_REACH; dy++)
+      {
+         for (int dx = -Functions.FISH_REACH; dx <= Functions.FISH_REACH; dx++)
+         {
+            Point newPt = new Point(pos.x + dx, pos.y + dy);
+            if (this.withinBounds(newPt) &&
+                    !this.isOccupied(newPt))
+            {
+               return Optional.of(newPt);
+            }
+         }
+      }
 
-   private boolean withinBounds(Point pos)
+      return Optional.empty();
+   }
+
+   public boolean withinBounds(Point pos)
    {
       return pos.y >= 0 && pos.y < this.numRows &&
               pos.x >= 0 && pos.x < this.numCols;
@@ -233,8 +250,8 @@ final class WorldModel
                return parseSgrass(properties, imageStore);
             case Functions.HERO_KEY:
                return parseHero(properties, imageStore);
-            case Functions.INJECTION_KEY:
-               return parseInjection(properties, imageStore);
+//            case Functions.INJECTION_KEY:
+//               return parseInjection(properties, imageStore);
          }
       }
 
@@ -322,19 +339,19 @@ final class WorldModel
       return properties.length == Functions.HERO_NUM_PROPERTIES;
    }
 
-   private boolean parseInjection(String [] properties,
-                             ImageStore imageStore)
-   {
-      if (properties.length == Functions.INJECTION_NUM_PROPERTIES)
-      {
-         Point pt = new Point(Integer.parseInt(properties[Functions.INJECTION_COL]),
-                 Integer.parseInt(properties[Functions.INJECTION_ROW]));
-         Injection injection = new Injection(pt, imageStore.getImageList(Functions.INJECTION_KEY));
-         this.tryAddEntity(injection);
-      }
-
-      return properties.length == Functions.INJECTION_NUM_PROPERTIES;
-   }
+//   private boolean parseInjection(String [] properties,
+//                             ImageStore imageStore)
+//   {
+//      if (properties.length == Functions.INJECTION_NUM_PROPERTIES)
+//      {
+//         Point pt = new Point(Integer.parseInt(properties[Functions.INJECTION_COL]),
+//                 Integer.parseInt(properties[Functions.INJECTION_ROW]));
+//         Injection injection = new Injection(pt, imageStore.getImageList(Functions.INJECTION_KEY));
+//         this.tryAddEntity(injection);
+//      }
+//
+//      return properties.length == Functions.INJECTION_NUM_PROPERTIES;
+//   }
 
    private boolean parseAtlantis(String [] properties,
                                 ImageStore imageStore)
@@ -344,7 +361,7 @@ final class WorldModel
          Point pt = new Point(Integer.parseInt(properties[Functions.ATLANTIS_COL]),
                  Integer.parseInt(properties[Functions.ATLANTIS_ROW]));
          Atlantis entity = new Atlantis(properties[Functions.ATLANTIS_ID],
-                 pt, imageStore.getImageList(Functions.ATLANTIS_KEY));
+                 pt, Functions.ATLANTIS_ACTION_PERIOD, imageStore.getImageList(Functions.ATLANTIS_KEY));
          this.tryAddEntity(entity);
       }
 

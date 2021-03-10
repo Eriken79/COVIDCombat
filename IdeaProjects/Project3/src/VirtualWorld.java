@@ -103,9 +103,7 @@ public final class VirtualWorld
          count++;
          System.out.println(count);
          Injection injection = new Injection(new Point(mouseX/TILE_WIDTH, mouseY/TILE_HEIGHT), imageStore.getImageList(Functions.INJECTION_KEY));
-         //injection.executeActivity(world, imageStore, scheduler);
-         world.addEntity(injection);
-         injection.scheduleActions(scheduler, world, imageStore);
+         injection.executeActivity(world, imageStore, scheduler);
    }
 
    public void keyPressed()

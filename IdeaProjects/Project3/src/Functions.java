@@ -47,10 +47,11 @@ final class Functions
    public static final int FISH_ACTION_PERIOD = 4;
 
    public static final String ATLANTIS_KEY = "atlantis";
-   public static final int ATLANTIS_NUM_PROPERTIES = 4;
+   public static final int ATLANTIS_NUM_PROPERTIES = 5;
    public static final int ATLANTIS_ID = 1;
    public static final int ATLANTIS_COL = 2;
    public static final int ATLANTIS_ROW = 3;
+   public static final int ATLANTIS_ACTION_PERIOD = 4;
    public static final int ATLANTIS_ANIMATION_PERIOD = 70;
    public static final int ATLANTIS_ANIMATION_REPEAT_COUNT = 7;
 
@@ -75,13 +76,13 @@ final class Functions
 
    public static final String INJECTION_KEY = "injection";
    public static final String INJECTION_ID = "injection";
-   public static final int INJECTION_NUM_PROPERTIES = 6;
-   public static final int INJECTION_COL = 1;
-   public static final int INJECTION_ROW = 2;
-   public static final int INJECTION_ACTION_PERIOD = 3;
-   public static final int INJECTION_ANIMATION_PERIOD = 4;
-   public static final int INJECTION_ANIMATION_REPEAT_COUNT = 5;
-
+//   public static final int INJECTION_NUM_PROPERTIES = 6;
+//   public static final int INJECTION_COL = 1;
+//   public static final int INJECTION_ROW = 2;
+   public static final int INJECTION_ACTION_PERIOD = 1100;
+   public static final int INJECTION_ANIMATION_PERIOD = 100;
+   public static final int INJECTION_ANIMATION_REPEAT_COUNT = 10;
+   public static final String OCTO_ID_SUFFIX = " -- octo";
    
    public static final String FISH_ID_PREFIX = "fish -- ";
    public static final int FISH_CORRUPT_MIN = 20000;

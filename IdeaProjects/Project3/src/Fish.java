@@ -11,19 +11,19 @@ public class Fish extends ActionEntity{
     public void executeActivity(WorldModel world,
                                     ImageStore imageStore, EventScheduler scheduler)
     {
-        Point pos = this.position;  // store current position before removing
-
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
-
-        Crab crab = new Crab(this.getId() + Functions.CRAB_ID_SUFFIX,
-                pos, this.getActionPeriod() / Functions.CRAB_PERIOD_SCALE,
-                Functions.CRAB_ANIMATION_MIN +
-                        Functions.rand.nextInt(Functions.CRAB_ANIMATION_MAX - Functions.CRAB_ANIMATION_MIN),
-                imageStore.getImageList(Functions.CRAB_KEY));
-
-        world.addEntity(crab);
-        crab.scheduleActions(scheduler, world, imageStore);
+//        Point pos = this.position;  // store current position before removing
+//
+//        world.removeEntity(this);
+//        scheduler.unscheduleAllEvents(this);
+//
+//        Crab crab = new Crab(this.getId() + Functions.CRAB_ID_SUFFIX,
+//                pos, this.getActionPeriod() / Functions.CRAB_PERIOD_SCALE,
+//                Functions.CRAB_ANIMATION_MIN +
+//                        Functions.rand.nextInt(Functions.CRAB_ANIMATION_MAX - Functions.CRAB_ANIMATION_MIN),
+//                imageStore.getImageList(Functions.CRAB_KEY));
+//
+//        world.addEntity(crab);
+//        crab.scheduleActions(scheduler, world, imageStore);
     }
 
     protected int getAnimationPeriod() { throw new UnsupportedOperationException(
