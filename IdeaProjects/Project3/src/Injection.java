@@ -18,11 +18,29 @@ public class Injection extends Stationary{
         injection.scheduleActions(scheduler, world, imageStore);
         long nextPeriod = this.getActionPeriod();
         //add injection, then consume injection to add antibody , add blood around injection,
+        int i = 0;
+        while (i < 9) {
+            Optional<Entity> InjectionTarget = world.findNearest(
+                    this.position, Covid.class);
+            if (InjectionTarget.isPresent() && this.position.adjacent(InjectionTarget.get().getPosition())){
 
+
+            }
+            Optional<Point> openPt = world.findOpenAround(this.position);
+
+            if (openPt.isPresent()) {
+                Freeze freeze = new Freeze(Functions.FISH_ID_PREFIX + this.getId(),
+                        openPt.get(),
+                        imageStore.getImageList(Functions.FREEZE_KEY));
+                world.addEntity(freeze);
+                freeze.scheduleActions(scheduler, world, imageStore);
+            }
+            i++;
+        }
         Point pos = this.position;
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
-        OctoNotFull octo = new OctoNotFull(this.getId() + Functions.OCTO_ID_SUFFIX, 5, pos, this.getActionPeriod(), this.getAnimationPeriod(), imageStore.getImageList(Functions.OCTO_KEY));
+        Antibody octo = new Antibody(this.getId() + Functions.OCTO_ID_SUFFIX, 5, pos, this.getActionPeriod(), this.getAnimationPeriod(), imageStore.getImageList(Functions.OCTO_KEY));
         world.addEntity(octo);
         octo.scheduleActions(scheduler, world, imageStore);
 

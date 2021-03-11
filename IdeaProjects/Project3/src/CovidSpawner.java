@@ -3,9 +3,9 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Atlantis extends ActionEntity{
-    public Atlantis(String id, Point position, int actionPeriod,
-                    List<PImage> images){
+public class CovidSpawner extends ActionEntity{
+    public CovidSpawner(String id, Point position, int actionPeriod,
+                        List<PImage> images){
         super(id, position, actionPeriod, images);
     }
 
@@ -13,7 +13,7 @@ public class Atlantis extends ActionEntity{
                                 ImageStore imageStore, EventScheduler scheduler) {
         int crabLimit = 0;
         for (Entity e : world.getEntities()) {
-            if (e instanceof Crab) {
+            if (e instanceof Covid) {
                 crabLimit++;
             }
         }
@@ -29,7 +29,11 @@ public class Atlantis extends ActionEntity{
                     imageStore.getImageList(Functions.CRAB_KEY));
             world.addEntity(covid);
             covid.scheduleActions(scheduler, world, imageStore);
+
         }
+        scheduler.scheduleEvent(this,
+                new Activity(this, world, imageStore),
+                this.getActionPeriod());
 
 //        Point pos = this.position;  // store current position before removing
 //
@@ -42,8 +46,7 @@ public class Atlantis extends ActionEntity{
 //                        Functions.rand.nextInt(Functions.CRAB_ANIMATION_MAX - Functions.CRAB_ANIMATION_MIN),
 //                imageStore.getImageList(Functions.CRAB_KEY));
 //
-//        world.addEntity(crab);
-//        crab.scheduleActions(scheduler, world, imageStore);
+
         }
 
         protected int getAnimationPeriod () {

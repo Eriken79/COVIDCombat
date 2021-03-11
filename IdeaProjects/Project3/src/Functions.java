@@ -79,10 +79,11 @@ final class Functions
 //   public static final int INJECTION_NUM_PROPERTIES = 6;
 //   public static final int INJECTION_COL = 1;
 //   public static final int INJECTION_ROW = 2;
-   public static final int INJECTION_ACTION_PERIOD = 1100;
+   public static final int INJECTION_ACTION_PERIOD = 11000;
    public static final int INJECTION_ANIMATION_PERIOD = 100;
    public static final int INJECTION_ANIMATION_REPEAT_COUNT = 10;
    public static final String OCTO_ID_SUFFIX = " -- octo";
+   public static final String FREEZE_KEY = "freeze";
    
    public static final String FISH_ID_PREFIX = "fish -- ";
    public static final int FISH_CORRUPT_MIN = 20000;

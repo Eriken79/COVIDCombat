@@ -54,7 +54,7 @@ public abstract class Movable extends AnimationEntity{
                                  Point destPos){
         List<Point> path = new ArrayList<>();
         path = this.getStrategy().computePath(this.position, destPos,
-                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || (!(world.getOccupant(p).get() instanceof Obstacle) && !(world.getOccupant(p).get() instanceof Crab) && !(world.getOccupant(p).get() instanceof Sgrass) && !(world.getOccupant(p).get() instanceof Hero) && !(world.getOccupant(p).get() instanceof Hero))),
+                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || (!(world.getOccupant(p).get() instanceof Obstacle) && !(world.getOccupant(p).get() instanceof Covid) && !(world.getOccupant(p).get() instanceof Alveoli) && !(world.getOccupant(p).get() instanceof Hero) && !(world.getOccupant(p).get() instanceof Capillary)) && !(world.getOccupant(p).get() instanceof Antibody)),
                 (p1, p2) -> p1.adjacent(p2),
                 PathingStrategy.CARDINAL_NEIGHBORS);
         if (path.isEmpty()) { return this.position;}

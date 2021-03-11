@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Crab extends Movable{
+public class Covid extends Movable{
     private PathingStrategy strategy;
-    public Crab(String id, Point position,
-                      int actionPeriod, int animationPeriod, List<PImage> images){
+    public Covid(String id, Point position,
+                 int actionPeriod, int animationPeriod, List<PImage> images){
         super(id, position, images, actionPeriod, animationPeriod);
         strategy = new AStarPathingStrategy();
     }
@@ -17,7 +17,7 @@ public class Crab extends Movable{
     {
 
         Optional<Entity> crabTarget = world.findNearest(
-                this.position, Fish.class);
+                this.position, Capillary.class);
         long nextPeriod = this.getActionPeriod();
 
         if (crabTarget.isPresent())
@@ -82,7 +82,7 @@ public class Crab extends Movable{
     {
         List<Point> path = new ArrayList<>();
         path = strategy.computePath(this.position, destPos,
-                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || (!(world.getOccupant(p).get() instanceof Obstacle) && !(world.getOccupant(p).get() instanceof Crab) && !(world.getOccupant(p).get() instanceof Sgrass)&& !(world.getOccupant(p).get() instanceof Hero))),
+                p -> PathingStrategy.withinBounds(p, world) && ((!(world.getOccupant(p).isPresent())) || (!(world.getOccupant(p).get() instanceof Obstacle) && !(world.getOccupant(p).get() instanceof Covid) && !(world.getOccupant(p).get() instanceof Alveoli)&& !(world.getOccupant(p).get() instanceof Hero))),
                 (p1, p2) -> p1.adjacent(p2),
                 PathingStrategy.CARDINAL_NEIGHBORS);
         if (path.isEmpty()) { return this.position;}

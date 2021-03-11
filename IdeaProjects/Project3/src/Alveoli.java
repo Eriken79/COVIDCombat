@@ -3,21 +3,26 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Sgrass extends ActionEntity{
-
-    public Sgrass(String id, Point position, int actionPeriod,
-                 List<PImage> images){
+public class Alveoli extends ActionEntity{
+    public Alveoli(String id, Point position, int actionPeriod,
+                   List<PImage> images){
         super(id, position, actionPeriod, images);
     }
 
     public void executeActivity(WorldModel world,
                                       ImageStore imageStore, EventScheduler scheduler)
     {
+        int capillarylimit = 0;
+        for (Entity e : world.getEntities()) {
+            if (e instanceof Covid) {
+                capillarylimit++;
+            }
+        }
         Optional<Point> openPt = world.findOpenAround(this.position);
 
         if (openPt.isPresent())
         {
-            Fish fish = new Fish(Functions.FISH_ID_PREFIX + this.getId(),
+            Capillary fish = new Capillary(Functions.FISH_ID_PREFIX + this.getId(),
                     openPt.get(), Functions.FISH_CORRUPT_MIN +
                     Functions.rand.nextInt(Functions.FISH_CORRUPT_MAX - Functions.FISH_CORRUPT_MIN),
                     imageStore.getImageList(Functions.FISH_KEY));

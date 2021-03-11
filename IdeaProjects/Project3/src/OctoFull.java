@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class OctoFull extends Octo{
+public class OctoFull extends Octo {
 
     public OctoFull(String id, int resourceLimit,
                           Point position, int actionPeriod, int animationPeriod,
@@ -15,7 +15,7 @@ public class OctoFull extends Octo{
                                         ImageStore imageStore, EventScheduler scheduler)
     {
         Optional<Entity> fullTarget = world.findNearest(this.position,
-                Atlantis.class);
+                CovidSpawner.class);
 
         if (fullTarget.isPresent() &&
                 this.moveTo(world, fullTarget.get(), scheduler))
@@ -47,7 +47,7 @@ public class OctoFull extends Octo{
     private void transformFull(WorldModel world,
                                  EventScheduler scheduler, ImageStore imageStore)
     {
-        OctoNotFull octo = new OctoNotFull(this.getId(), this.getResourceLimit(),
+        Antibody octo = new Antibody(this.getId(), this.getResourceLimit(),
                 this.position, this.getActionPeriod(), this.getAnimationPeriod(),
                 this.getImages());
 

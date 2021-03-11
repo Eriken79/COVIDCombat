@@ -2,10 +2,10 @@ import processing.core.PImage;
 import java.util.List;
 import java.util.Optional;
 
-public class Fish extends Movable{//ActionEntity{
+public class Capillary extends Movable{//ActionEntity{
     private PathingStrategy strategy;
-    public Fish(String id, Point position, int actionPeriod,
-                List<PImage> images){
+    public Capillary(String id, Point position, int actionPeriod,
+                     List<PImage> images){
         super(id, position, images, actionPeriod, 0);
         this.strategy = new SingleStepPathingStrategy();
     }
@@ -14,7 +14,6 @@ public class Fish extends Movable{//ActionEntity{
     public void executeActivity(WorldModel world,
                                 ImageStore imageStore, EventScheduler scheduler)
     {
-        System.out.println("execute");
         Optional<Entity> fishTarget = world.findNearest(
                 this.position, Hero.class);
         long nextPeriod = this.getActionPeriod();
@@ -25,7 +24,6 @@ public class Fish extends Movable{//ActionEntity{
 
             if (this.moveTo(world, fishTarget.get(), scheduler))
             {
-                System.out.println("move");
                 nextPeriod += this.getActionPeriod();
             }
         }

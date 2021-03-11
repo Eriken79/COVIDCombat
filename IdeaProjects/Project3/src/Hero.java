@@ -11,7 +11,7 @@ public class Hero extends Movable{
     @Override
     protected void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)     {
         Optional<Entity> heroTarget = world.findNearest(
-                this.position, Crab.class);
+                this.position, Covid.class);
         long nextPeriod = this.getActionPeriod();
 
         if (heroTarget.isPresent())

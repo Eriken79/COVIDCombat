@@ -280,7 +280,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[Functions.OCTO_COL]),
                  Integer.parseInt(properties[Functions.OCTO_ROW]));
-         OctoNotFull entity = new OctoNotFull(properties[Functions.OCTO_ID],
+         Antibody entity = new Antibody(properties[Functions.OCTO_ID],
                  Integer.parseInt(properties[Functions.OCTO_LIMIT]),
                  pt,
                  Integer.parseInt(properties[Functions.OCTO_ACTION_PERIOD]),
@@ -315,7 +315,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[Functions.FISH_COL]),
                  Integer.parseInt(properties[Functions.FISH_ROW]));
-         Fish entity = new Fish(properties[Functions.FISH_ID],
+         Capillary entity = new Capillary(properties[Functions.FISH_ID],
                  pt, Integer.parseInt(properties[Functions.FISH_ACTION_PERIOD]),
                  imageStore.getImageList(Functions.FISH_KEY));
          this.tryAddEntity(entity);
@@ -360,7 +360,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[Functions.ATLANTIS_COL]),
                  Integer.parseInt(properties[Functions.ATLANTIS_ROW]));
-         Atlantis entity = new Atlantis(properties[Functions.ATLANTIS_ID],
+         CovidSpawner entity = new CovidSpawner(properties[Functions.ATLANTIS_ID],
                  pt, Functions.ATLANTIS_ACTION_PERIOD, imageStore.getImageList(Functions.ATLANTIS_KEY));
          this.tryAddEntity(entity);
       }
@@ -375,7 +375,7 @@ final class WorldModel
       {
          Point pt = new Point(Integer.parseInt(properties[Functions.SGRASS_COL]),
                  Integer.parseInt(properties[Functions.SGRASS_ROW]));
-         Sgrass entity = new Sgrass(properties[Functions.SGRASS_ID],
+         Alveoli entity = new Alveoli(properties[Functions.SGRASS_ID],
                  pt,
                  Integer.parseInt(properties[Functions.SGRASS_ACTION_PERIOD]),
                  imageStore.getImageList(Functions.SGRASS_KEY));
