@@ -15,7 +15,24 @@ public class Covid extends Movable{
     public void executeActivity(WorldModel world,
                                     ImageStore imageStore, EventScheduler scheduler)
     {
-
+//        if(!Functions.frozen) {
+            for (Entity f : world.getEntities()) {
+                if (f instanceof Freeze && this.position.adjacent(f.getPosition())) {
+//                    Covid c = new Covid(this.getId(),
+//                            this.position, 10000, this.getAnimationPeriod(),
+//                            imageStore.getImageList(Functions.COVIDNEW_KEY));
+                    this.setActionPeriod(10000);
+                    this.setImages(imageStore.getImageList(Functions.COVIDNEW_KEY));
+                    Functions.frozen = true;
+                    break;
+//                    world.removeEntity(this);
+//                    scheduler.unscheduleAllEvents(this);
+//
+//                    world.addEntity(c);
+//                    c.scheduleActions(scheduler, world, imageStore);
+                }
+            }
+        //}
         Optional<Entity> crabTarget = world.findNearest(
                 this.position, Capillary.class);
         long nextPeriod = this.getActionPeriod();

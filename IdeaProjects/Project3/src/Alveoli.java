@@ -14,17 +14,17 @@ public class Alveoli extends ActionEntity{
     {
         int capillarylimit = 0;
         for (Entity e : world.getEntities()) {
-            if (e instanceof Covid) {
+            if (e instanceof Capillary) {
                 capillarylimit++;
             }
         }
         Optional<Point> openPt = world.findOpenAround(this.position);
 
-        if (openPt.isPresent())
+        if (openPt.isPresent() && capillarylimit < 9)
         {
             Capillary fish = new Capillary(Functions.FISH_ID_PREFIX + this.getId(),
                     openPt.get(), Functions.FISH_CORRUPT_MIN +
-                    Functions.rand.nextInt(Functions.FISH_CORRUPT_MAX - Functions.FISH_CORRUPT_MIN),
+                    Functions.rand.nextInt(Functions.FISH_CORRUPT_MAX - 10),
                     imageStore.getImageList(Functions.FISH_KEY));
             world.addEntity(fish);
             fish.scheduleActions(scheduler, world, imageStore);

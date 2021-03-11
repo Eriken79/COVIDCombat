@@ -84,7 +84,8 @@ final class Functions
    public static final int INJECTION_ANIMATION_REPEAT_COUNT = 10;
    public static final String OCTO_ID_SUFFIX = " -- octo";
    public static final String FREEZE_KEY = "freeze";
-   
+   public static final String COVIDNEW_KEY = "coronavirus1";
+   public static boolean frozen = false;
    public static final String FISH_ID_PREFIX = "fish -- ";
    public static final int FISH_CORRUPT_MIN = 20000;
    public static final int FISH_CORRUPT_MAX = 30000;

@@ -13,22 +13,26 @@ public class Injection extends Stationary{
 
     @Override
     protected void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Injection injection = new Injection(position, imageStore.getImageList(Functions.INJECTION_KEY));
-        world.addEntity(injection);
-        injection.scheduleActions(scheduler, world, imageStore);
-        long nextPeriod = this.getActionPeriod();
+        int antibodyLimit = 0;
+        for (Entity e : world.getEntities()) {
+            if (e instanceof Antibody) {
+                antibodyLimit++;
+            }
+        }
+        if(antibodyLimit < 4) {
+            Injection injection = new Injection(position, imageStore.getImageList(Functions.INJECTION_KEY));
+            world.addEntity(injection);
+            injection.scheduleActions(scheduler, world, imageStore);
+            long nextPeriod = this.getActionPeriod();
+        }
         //add injection, then consume injection to add antibody , add blood around injection,
         int i = 0;
         while (i < 9) {
             Optional<Entity> InjectionTarget = world.findNearest(
                     this.position, Covid.class);
-            if (InjectionTarget.isPresent() && this.position.adjacent(InjectionTarget.get().getPosition())){
-
-
-            }
             Optional<Point> openPt = world.findOpenAround(this.position);
 
-            if (openPt.isPresent()) {
+            if (openPt.isPresent() && antibodyLimit < 4) {
                 Freeze freeze = new Freeze(Functions.FISH_ID_PREFIX + this.getId(),
                         openPt.get(),
                         imageStore.getImageList(Functions.FREEZE_KEY));
@@ -37,12 +41,14 @@ public class Injection extends Stationary{
             }
             i++;
         }
-        Point pos = this.position;
-        world.removeEntity(this);
-        scheduler.unscheduleAllEvents(this);
-        Antibody octo = new Antibody(this.getId() + Functions.OCTO_ID_SUFFIX, 5, pos, this.getActionPeriod(), this.getAnimationPeriod(), imageStore.getImageList(Functions.OCTO_KEY));
-        world.addEntity(octo);
-        octo.scheduleActions(scheduler, world, imageStore);
+        if(antibodyLimit < 4) {
+            Point pos = this.position;
+            world.removeEntity(this);
+            scheduler.unscheduleAllEvents(this);
+            Antibody octo = new Antibody(this.getId() + Functions.OCTO_ID_SUFFIX, 5, pos, 3000, this.getAnimationPeriod(), imageStore.getImageList(Functions.OCTO_KEY));
+            world.addEntity(octo);
+            octo.scheduleActions(scheduler, world, imageStore);
+        }
 
 //        Optional<Point> openPt = world.findOpenAround(this.position);
 //

@@ -56,10 +56,10 @@ background sea 37 18
 background sea 31 15
 background sea 31 26
 background sea 24 26
-atlantis atlantis_-1_3 -1 3 1000
-atlantis atlantis_40_40 40 40 1000
-atlantis atlantis_0_40 0 40 1000
-atlantis atlantis_40_0 40 0 1000
+atlantis atlantis_-1_3 -1 3 10000
+atlantis atlantis_40_40 40 40 10000
+atlantis atlantis_0_40 0 40 10000
+atlantis atlantis_40_0 40 0 10000
 hero hero_17_15 17 15 2 100
 obstacle obstacle_27_25 27 25
 obstacle obstacle_28_25 28 25

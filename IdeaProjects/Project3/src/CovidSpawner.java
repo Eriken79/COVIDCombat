@@ -19,7 +19,7 @@ public class CovidSpawner extends ActionEntity{
         }
         Optional<Point> openPt = world.findOpenAround(this.position);
 
-        if (openPt.isPresent() && crabLimit < 17)
+        if (openPt.isPresent() && crabLimit < 33)
         {
             CovidFactory covidFactory = new CovidFactory();
             Entity covid = covidFactory.createEntity(this.getId() + Functions.CRAB_ID_SUFFIX,
@@ -46,7 +46,7 @@ public class CovidSpawner extends ActionEntity{
 //                        Functions.rand.nextInt(Functions.CRAB_ANIMATION_MAX - Functions.CRAB_ANIMATION_MIN),
 //                imageStore.getImageList(Functions.CRAB_KEY));
 //
-
+            crabLimit = 0;
         }
 
         protected int getAnimationPeriod () {

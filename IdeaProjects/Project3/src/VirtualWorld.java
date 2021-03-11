@@ -2,6 +2,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Set;
+
 import processing.core.*;
 
 /*
@@ -52,8 +54,10 @@ public final class VirtualWorld
    public static int count = 0;
    public static boolean nextPressed;
    public static int timePressed;
-   public boolean startScreen = true;
-   public boolean startGame = false;
+   public static boolean startScreen = true;
+   public static boolean startGame = false;
+   public static long timeSinceStart = 0;
+   public static boolean firstTime = true;
 
    private ImageStore imageStore;
    private WorldModel world;
@@ -102,9 +106,28 @@ public final class VirtualWorld
          //text("Now!", 10, 60);
          //fill(0, 102, 153, 51);
          startScreen = false;
+
       }
       if (startGame) {
          long time = System.currentTimeMillis();
+         int caps = 0;
+         for (Entity e : world.getEntities()) {
+            if (e instanceof Capillary) {
+               caps++;
+            }
+         }
+         if ((time >= VirtualWorld.timeSinceStart + 8000) && (caps == 0)){
+            System.out.println("Game Over");
+            exit();
+            /*VirtualWorld.startGame = false;
+            stop();
+            *//*for (Entity e : world.getEntities()) {
+               world.removeEntity(e);
+            }*//*
+            startScreen = true;
+            startGame = false;
+            main("VirtualWorld");*/
+         }
          if (time >= next_time) {
             this.scheduler.updateOnTime(time);
             next_time = time + TIMER_ACTION_PERIOD;
@@ -134,6 +157,7 @@ public final class VirtualWorld
          timeScale = Math.min(FAST_SCALE, timeScale);
 
       }
+      timeSinceStart = System.currentTimeMillis();
       startGame = true;
    }
 
@@ -190,6 +214,7 @@ public final class VirtualWorld
 //         view.shiftView(dx, dy);
       }
    }
+
 
    private Background createDefaultBackground(ImageStore imageStore)
    {
@@ -263,15 +288,14 @@ public final class VirtualWorld
 //            case FASTEST_FLAG:
 //               timeScale = Math.min(FASTEST_SCALE, timeScale);
 //               break;
-            case EASY_FLAG:
-               Difficulty = "easy";
-               timeScale = Math.min(FAST_SCALE, timeScale);
-               break;
-            case HARD_FLAG:
-               Difficulty = "hard";
-               timeScale = Math.min(FASTER_SCALE, timeScale);
-               //timeScale = 1.0;
-               break;
+//           case EASY_FLAG:
+//               Difficulty = "easy";
+//               timeScale = Math.min(FAST_SCALE, timeScale);
+//               break;
+//            case HARD_FLAG:
+//               Difficulty = "hard";
+//               timeScale = Math.min(FASTER_SCALE, timeScale);
+//               break;
          }
       }
    }

@@ -13,7 +13,7 @@ public abstract class Entity
    /*private final EntityKind kind;*/
    private final String id;
    public Point position;
-   private final List<PImage> images;
+   private List<PImage> images;
    public int imageIndex;
    /*private final int resourceLimit;
    private int resourceCount;
@@ -100,6 +100,10 @@ public abstract class Entity
 
 
    protected abstract void scheduleActions(EventScheduler scheduler, WorldModel world, ImageStore imageStore);
+
+   protected void setImages(List<PImage> imageList){
+      this.images = imageList;
+   };
 }
    /*{
       Optional<Entity> fullTarget = world.findNearest(this.position,
