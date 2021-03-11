@@ -116,7 +116,7 @@ public final class VirtualWorld
                caps++;
             }
          }
-         if ((time >= VirtualWorld.timeSinceStart + 8000) && (caps == 0)){
+         if ((time >= VirtualWorld.timeSinceStart + 15000) && (caps == 0)){
             System.out.println("Game Over");
             exit();
             /*VirtualWorld.startGame = false;
